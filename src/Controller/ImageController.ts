@@ -1,6 +1,8 @@
 import express,{Response,Request} from 'express'
 import multer from 'multer'
 
+import path from 'path'
+
 const upload = multer().single('avatar')
 const app = express();
 
@@ -9,11 +11,7 @@ const app = express();
 * route @POST
 */
 export const postImage = async(req: Request, res: Response) => {
-    upload(req ,res, ()=>{
-        console.log('test');
-    })
-    
-    res.send('success');
+    res.json(req.files);
 }
 
 /*
