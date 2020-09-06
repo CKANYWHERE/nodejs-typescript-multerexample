@@ -1,7 +1,6 @@
 import express,{Response,Request} from 'express'
 import multer from 'multer'
-
-import path from 'path'
+import fs from 'fs'
 
 const upload = multer().single('avatar')
 const app = express();
@@ -19,6 +18,29 @@ export const postImage = async(req: Request, res: Response) => {
 * route @GET
 */
 export const getImage = async(req: Request, res: Response) => {
+
+    let fileName = req.params.id;
+    fs.exists('/Users/minchang-gyeong/Image/'+fileName, (exists:boolean) => {
+        if(exists){
+            fs.readFile('/Users/minchang-gyeong/Image/' + fileName, (err ,data) =>{
+                try{
+                    res.end(data)
+                }catch{
+                    console.log(err);
+                }
+            });
+        }else{
+            fs.readFile('/Users/minchang-gyeong/NoImage/noimage.jpg', (err ,data) =>{
+                try{
+                    console.log('asdf');
+                    
+                    res.end(data)
+                }catch{
+                    console.log(err);
+                }
+            });
+        }
+    });
 }
 
 export const test = async(req: Request, res: Response) => {
