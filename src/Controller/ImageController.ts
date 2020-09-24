@@ -22,7 +22,7 @@ export const getImage = async(req: Request, res: Response) => {
     let fileName = req.params.id;
     fs.exists('C://UserPicture'+fileName, (exists:boolean) => {
         if(exists){
-            fs.readFile('C://UserPicture' + fileName, (err ,data) =>{
+            fs.readFile('C://UserPicture/' + fileName, (err ,data) =>{
                 try{
                     res.end(data)
                 }catch{
