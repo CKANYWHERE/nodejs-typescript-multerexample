@@ -20,9 +20,9 @@ export const postImage = async(req: Request, res: Response) => {
 export const getImage = async(req: Request, res: Response) => {
 
     let fileName = req.params.id;
-    fs.exists('/Users/minchang-gyeong/Image/'+fileName, (exists:boolean) => {
+    fs.exists('C://UserPicture'+fileName, (exists:boolean) => {
         if(exists){
-            fs.readFile('/Users/minchang-gyeong/Image/' + fileName, (err ,data) =>{
+            fs.readFile('C://UserPicture' + fileName, (err ,data) =>{
                 try{
                     res.end(data)
                 }catch{
@@ -30,7 +30,7 @@ export const getImage = async(req: Request, res: Response) => {
                 }
             });
         }else{
-            fs.readFile('/Users/minchang-gyeong/NoImage/noimage.jpg', (err ,data) =>{
+            fs.readFile('C://NoImage/noimage.jpg', (err ,data) =>{
                 try{
                     console.log('asdf');
                     
